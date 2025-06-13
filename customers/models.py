@@ -7,9 +7,9 @@ class TypeOfBusiness(models.Model):
     detail = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_type_of_business'
@@ -19,9 +19,9 @@ class AccountType(models.Model):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_account_type'
@@ -31,9 +31,9 @@ class AccountCategory(models.Model):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_account_category'
@@ -41,6 +41,7 @@ class AccountCategory(models.Model):
 
 class Industry(models.Model):
     name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
     # Tambahkan field lain jika diperlukan
 
     class Meta:
@@ -48,6 +49,7 @@ class Industry(models.Model):
         verbose_name_plural = "Industries"
 
 class Account(models.Model):
+    account_no = models.CharField(max_length=30, blank=True, null=True)
     name = models.CharField(max_length=200)
     industry = models.ForeignKey(Industry, on_delete=models.SET_NULL, null=True, blank=True)
     type_of_business = models.ForeignKey(TypeOfBusiness, on_delete=models.SET_NULL, null=True, blank=True)
@@ -63,9 +65,9 @@ class Account(models.Model):
             raise ValidationError("Parent field must be filled if account_category is not 'Parent'.")
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_account'
@@ -84,9 +86,9 @@ class AccountAddress(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_account_address'
@@ -97,9 +99,9 @@ class Bank(models.Model):
     description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_bank'
@@ -108,9 +110,9 @@ class BankCategory(models.Model):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_bank_category'
@@ -123,9 +125,9 @@ class AccountBank(models.Model):
     bank_category = models.ForeignKey(BankCategory, on_delete=models.SET_NULL, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
     bank_account_holder_name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
@@ -136,9 +138,9 @@ class Position(models.Model):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_position'
@@ -151,9 +153,9 @@ class AccountPIC(models.Model):
     email = models.EmailField()
     is_active = models.BooleanField(default=True)
     created_by = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     updated_by = models.CharField(max_length=50, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'm_account_pic'
