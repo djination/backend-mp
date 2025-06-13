@@ -21,7 +21,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 import os
 
-SWAGGER_URL = os.environ.get('SWAGGER_URL', 'http://103.23.199.26:8088')
+SWAGGER_URL = os.environ.get('SWAGGER_URL', 'https://bc.merahputih-id.com')
 schema_view = get_schema_view(
    openapi.Info(
       title="CustomerDB API",
